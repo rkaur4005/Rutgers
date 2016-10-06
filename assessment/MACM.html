@@ -1,0 +1,352 @@
+<div id="egyan-segment" class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <ul class="nav nav-tabs">
+                <li role="presentation" data-ng-class="{active: (assessmentshown === 'create')}"><a href="" data-ng-click="toggleasstab($event, 'create')">Mastery</a></li>
+                <li role="presentation" data-ng-class="{active: (assessmentshown === 'addseg')}"><a href="" data-ng-click="toggleasstab($event, 'addseg')">Add Segment</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="segment-container">
+                <form name="assesmentformdata" ng-submit="submitAssessmentObj()">
+                    <div id="create_assessment"  data-ng-show="assessmentshown === 'create'">
+                        <!--[content for mastery goes here....]-->
+                        <!--   mastery  details start -->
+                        <div class="container">
+                            <fieldset class="scheduler-border">
+                                <legend class="scheduler-border">Mastery</legend>
+                                <div class="row">
+                                    <div class="col-sm-2 form-group">
+                                        <label class="control-label" for="percentage_1">percentage1:</label>
+                                        <input type="text" id="percentage_1" class="form-control" placeholder="enter value" data-ng-model="formdata.mastery.percentage_1" data-ng-required="true">
+                                    </div>
+                                    <div class="col-sm-2 form-group">
+                                        <label class="control-label" for="percentage_2">percentage2: </label>
+                                        <input type="text" id="percentage_2" class="form-control" placeholder="enter value"  data-ng-model="formdata.mastery.percentage_2" data-ng-required="true">
+                                    </div>
+                                    <div class="col-sm-2 form-group">
+                                        <label class="control-label" for="percentage_3">percentage3: </label>
+                                        <input type="text" id="percentage_3" class="form-control" placeholder="enter value"  data-ng-model="formdata.mastery.percentage_3" data-ng-required="true">
+                                    </div>
+                                    <div class="col-sm-2 form-group">
+                                        <label class="control-label" for="percentage_4">percentage4: </label>
+                                        <input type="text" id="percentage_4" class="form-control" placeholder="enter value"  data-ng-model="formdata.mastery.percentage_4" data-ng-required="true">
+                                    </div>
+                                    <div class="col-sm-2 form-group">
+                                        <label class="control-label" for="percentage_5">percentage5: </label>
+                                        <input type="text" id="percentage_5" class="form-control" placeholder="enter value"  data-ng-model="formdata.mastery.percentage_5" data-ng-required="true">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-6 form-group" ng-class="{ 'has-error': assesmentformdata.assessment_type.$invalid && !assesmentformdata.assessment_type.$pristine}">
+                                        <label class="control-label" for="assessment_type">Assessment type:</label>
+                                        <select  id="assessment_type" class="form-control" data-
+                                                ng-options="option for option in configureoptions.assessment_type track by option" data-ng-model="formdata.mastery.assessment_type" data-ng-required="true">
+                                            <option value="">Please Select</option>
+                                        </select>
+                                        <p class="text-danger" data-ng-show="assesmentformdata.assessment_type.$invalid && !assesmentformdata.assessment_type.$pristine">Assessment type is required.</p>
+                                    </div>
+                                </div>
+                            </fieldset>
+                        </div>
+                        <!--End  mastery details -->
+                        <!--start assessment details -->
+                        <div class="container" >
+                            <fieldset class="scheduler-border">
+                                <legend class="scheduler-border">Assessment Details</legend>
+                                <div class="row" >
+                                    <div class="col-sm-4 form-group">
+                                        <label class="control-label" for="offer_mode">Offer mode:</label>
+                                        <select id="offer_mode" class="form-control"
+                                                data-ng-options="option for option in configureoptions.offer_mode track by option"
+                                                data-ng-model="formdata.offer_mode" data-ng-required="true">
+                                            <option value="">Please Select</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-sm-4 form-group">
+                                        <label class="control-label" for="retake_policy">Retake policy:</label>
+                                        <select id="retake_policy" class="form-control"
+                                                data-ng-options="option for option in configureoptions.retake_policy track by option"
+                                                data-ng-model="formdata.retake_policy" data-ng-required="true">
+                                            <option value="">Please Select</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-sm-4 form-group">
+                                        <label class="control-label" for="validation_mode">Validation mode:</label>
+                                        <select id="validation_mode" class="form-control"
+                                                data-ng-options="option for option in configureoptions.validation_mode track by option"
+                                                data-ng-model="formdata.validation_mode" data-ng-required="true">
+                                            <option value="">Please Select</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-6 form-group"  data-ng-class="{ 'has-error': assesmentformdata.assessment_name.$invalid && !assesmentformdata.assessment_name.$pristine}">
+                                        <label class="control-label" for="assessment_name">Assessment Name:</label>
+                                        <input type="text"  class="form-control" placeholder="Please enter assessment name"  id="assessment_name"  data-ng-model="formdata.assessment_name" data-ng-required="true">
+                                        <p class="text-danger" ng-show="assesmentformdata.assessment_name.$invalid && !assesmentformdata.assessment_name.$pristine">Assessment Name is required.</p>
+                                    </div>
+                                    <div class="col-sm-6 form-group" data-ng-class="{ 'has-error': assesmentformdata.duratio_minutes.$invalid && !assesmentformdata.duratio_minutes.$pristine}">
+                                        <label class="control-label" for="duratio_minutes">Duration:</label>
+                                        <input type="number"  min="0" class="form-control" placeholder="In Minutes"  id="duratio_minutes" data-ng-model="formdata.duration_minutes" data-ng-required="true">
+                                        <p class="text-danger" data-ng-show="assesmentformdata.duratio_minutes.$invalid && !assesmentformdata.duratio_minutes.$pristine">Assessment Name is required.</p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <label class="control-label">Duration:</label>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="row">
+                                            <div class="col-lg-4 date-picker-padd">
+                                                <label for="" class="control-label">Start Date And Time</label>
+                                                <div class="input-group" data-ng-class="{ 'has-error': assesmentformdata.open_date_assessment.$invalid && !assesmentformdata.open_date_assessment.$pristine}">
+                                                    <input type="text" class="form-control" id="" name="open_date_assessment" uib-datepicker-popup="yyyy/MM/dd"  data-ng-model="formdata.open_date" is-open="popup1.opened" data-ng-required="true"  />
+                                                    <span class="input-group-btn">
+                                       <button type="button" data-ng-class="{ 'has-error': assesmentformdata.open_date_assessment.$invalid && !assesmentformdata.open_date_assessment.$pristine}" class="btn btn-default" ng-click="popup1.opened = !popup1.opened"><i class="glyphicon glyphicon-calendar"></i></button>
+                                       </span>
+                                                </div>
+                                                <p class="text-danger" data-ng-show="assesmentformdata.open_date_assessment.$invalid && !assesmentformdata.open_date_assessment.$pristine">Start date is required.</p>
+                                            </div>
+                                            <div class="col-lg-8">
+                                                <div uib-timepicker data-ng-model="formdata.open_datetime" data-ng-change="changed()" name="open_datetime_assessment" hour-step="1" minute-step="15" data- ng-class="{ 'has-error': assesmentformdata.open_datetime_assessment.$invalid && !assesmentformdata.open_datetime_assessment.$pristine}"></uib-timepicker>
+                                                <p class="text-danger" data-ng-show="assesmentformdata.open_datetime_assessment.$invalid && !assesmentformdata.open_datetime_assessment.$pristine">Open Time is required.</p>
+                                            </div>
+                                                </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="row">
+                                            <div class="col-lg-4 date-picker-padd">
+                                                <label class="control-label">End Date And Time</label>
+                                                <div class="input-group" data-ng-class="{ 'has-error': assesmentformdata.close_date_assessment.$invalid && !assesmentformdata.close_date_assessment.$pristine}">
+                                                    <input type="text" name="close_date_assessment"  class="form-control" uib-datepicker-popup="yyyy/MM/dd"  data-ng-model="formdata.close_date" is-open="popup2.opened" data-ng-required="true"  />
+                                                    <span class="input-group-btn">
+                                       <button type="button" class="btn btn-default" data-ng-click="popup2.opened = !popup2.opened"><i class="glyphicon glyphicon-calendar"></i></button>
+                                       </span>
+                                                </div>
+                                                <p class="text-danger" data-ng-show="assesmentformdata.close_date_assessment.$invalid && !assesmentformdata.close_date_assessment.$pristine">The end date should be after the start date</p>
+                                            </div>
+                                            <div class="col-lg-8">
+                                                <div uib-timepicker data-ng-model="formdata.close_datetime" data-ng-change="changed()" hour-step="1" minute-step="15"  data-ng-class="{ 'has-error': assesmentformdata.close_datetime_assessment.$invalid && !assesmentformdata.close_datetime_assessment.$pristine}"></uib-timepicker>
+                                                <p class="text-danger" ng-show="assesmentformdata.close_datetime_assessment.$invalid && !assesmentformdata.close_datetime_assessment.$pristine">The end date should be after the start date.</p>
+                                            </div>
+                                                </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-6 form-group">
+                                        <label for="self_efficacy">Self efficacy:</label>
+                                        <input type="checkbox" id="self_efficacy" class= "checkbox checkbox-inline" data-ng-model="formdata.self_efficacy" data-ng-required="true">
+                                    </div>
+                                </div>
+                            </fieldset>
+                        </div>
+                        <!--End assessment details -->
+                        <!--start section details -->
+                        <div class="container" >
+                            <fieldset class="scheduler-border">
+                                <legend class="scheduler-border">Sections</legend>
+                                <div data-ng-repeat="classsecid in configureoptions.classsections">
+                                    <div class="col-sm-6 form-group" ng-init="formdata.classsections[$index].classsection_id = classsecid.classsection_id">
+                                        <label class="control-label">Class Section</label>
+                                        <uib-accordion close-others="oneAtATime">
+                                            <div uib-accordion-group class="panel-default" is-open="status.open">
+                                                <uib-accordion-heading>
+                                                    {{classsecid.classsection_registrar_id}} <i class="pull-right glyphicon" data-ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i>
+                                                </uib-accordion-heading>
+                                                <div class="row">
+                                                    <div class="col-sm-12 col-md-12">
+                                                        <div class="row">
+                                                            <div class="col-lg-4">
+                                                                <label class="control-label">Start Date And Time</label>
+                                                                <div class="input-group date-picker-padd">
+                                                                    <input type="text" class="form-control" uib-datepicker-popup="yyyy/MM/dd"  data-ng-model="formdata.classsections[$index].open_date_override" is-open="classsecid.startpopup_opened"  />
+                                                                    <span class="input-group-btn">
+                                                   <button type="button" class="btn btn-default" ng-click="classsecid.startpopup_opened = !classsecid.startpopup_opened"><i class="glyphicon glyphicon-calendar"></i></button>
+                                                   </span>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-lg-8">
+                                                                <div uib-timepicker data-ng-model="formdata.classsections[$index].open_date_override_datetime" data-ng-change="changed()" hour-step="1" minute-step="1" >
+                                                            </div>
+                                                        </div>
+                                                            </div>
+                                                    </div>
+                                                    <div class="col-sm-12 col-md-12">
+                                                        <div class="row">
+                                                            <div class="col-lg-4">
+                                                                <label class="control-label">End Date And Time</label>
+                                                                <div class="input-group date-picker-padd">
+                                                                    <input type="text" class="form-control" uib-datepicker-popup="yyyy/MM/dd"  data-ng-model="formdata.classsections[$index].close_date_override" is-open="classsecid.endpopup_opened" />
+                                                                    <span class="input-group-btn">
+                                                   <button type="button" class="btn btn-default" ng-click="classsecid.endpopup_opened = !classsecid.endpopup_opened"><i class="glyphicon glyphicon-calendar"></i></button>
+                                                   </span>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-lg-8">
+                                                                <div uib-timepicker data-ng-model="formdata.classsections[$index].close_date_override_datetime" data-ng-change="changed()" hour-step="1" minute-step="1" >
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                        </div>
+                                                </div>
+                                        </uib-accordion>
+                                    </div>
+                                </div>
+                            </fieldset>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12 form-group">
+                                <div class="btn-group pull-right">
+                                    <button class="btn btn-info" data-ng-click="toggleasstab($event, 'addseg')" id="nexttab" type="button"> Next  <i class="fa fa-angle-double-right" aria-hidden="true"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--end section details -->
+                    <div id="add_assessment" data-ng-show="assessmentshown === 'addseg'">
+                        <div class="segmentlist card"  data-ng-repeat="segment in formdata.segments">
+                            <div class="row" data-ng-init="outerIndex = $index">
+                                <div class="col-md-11">
+                                    <h3>{{segment.segment_Name}}</h3>
+                                </div>
+                                <div class="col-md-1 text-right">
+                                    <i class="fa  fa-2x" data-ng-click="segment.isCollapsed = !segment.isCollapsed" data-ng-class="segment.isCollapsed ? 'fa-plus-square-o' : 'fa-minus-square-o'"> </i>
+                                </div>
+                            </div>
+                            <div data-ng-hide="segment.isCollapsed">
+                                <div class="row">
+                                    <div class="col-sm-6 form-group" data-ng-class="{ 'has-error': assesmentformdata.segments_position_{{$index}}.$invalid && !assesmentformdata.segments_position_{{$index}}.$pristine}">
+                                        <label class="control-label" for="segments_position_{{$index}}">Segment Position:</label>
+                                        <div class="row">
+                                            <div class="col-md-10">
+                                                <input type="text"  class="form-control" placeholder="Please enter segmentposition" name="segments_position_{{$index}}" id="segments_position_{{$index}}"  data-ng-model="segment.segment_position" data-ng-required="true">
+                                                <p class="text-danger" data-ng-show="assesmentformdata.segments_position_{{$index}}.$invalid && !assesmentformdata.segments_position_{{$index}}.$pristine">Segment Position is required.</p>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <button type="button" data-ng-click="setPosSeg($index , segment.segment_position)" class="btn btn-primary">Set</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6 form-group" data-ng-class="{ 'has-error': assesmentformdata.questions_score_{{$index}}.$invalid && !assesmentformdata.questions_score_{{$index}}.$pristine}">
+                                        <label class="control-label" for="questions_score_{{$index}}">Question Score:</label>
+                                        <input type="number"  min="0" class="form-control" placeholder="Enter Question Score" name="questions_score_{{$index}}" id="questions_score_{{$index}}"  data-ng-model="segment.question_score" data-ng-required="true">
+                                        <p class="text-danger" data-ng-show="assesmentformdata.questions_score_{{$index}}.$invalid && !assesmentformdata.questions_score_{{$index}}.$pristine">Question Score is required.</p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-6 form-group" data-ng-class="{ 'has-error': assesmentformdata.selections_count_{{$index}}.$invalid && !assesmentformdata.selections_count_{{$index}}.$pristine}">
+                                        <label class="control-label" for="selections_count_{{$index}}">Selection Count:</label>
+                                        <input type="number" min="0" class="form-control" placeholder="Please enter selection count" name="selections_count_{{$index}}" id="selections_count_{{$index}}"  data-ng-model="segment.selection_count" data-ng-required="true">
+                                        <p class="text-danger" data-ng-show="assesmentformdata.selections_count_{{$index}}.$invalid && !assesmentformdata.selections_count_{{$index}}.$pristine">Segment Count is required.</p>
+                                    </div>
+                                    <div class="col-sm-6 form-group" data-ng-class="{ 'has-error': assesmentformdata.questions_order_{{$index}}.$invalid && !assesmentformdata.questions_order_{{$index}}.$pristine}">
+                                        <label class="control-label" for="questions_order_{{$index}}">Question Order:</label>
+                                        <select name="questions_order_{{$index}}" id="questions_order_{{$index}}" class="form-control"  data-ng-model="segment.question_order"
+                                                data-ng-options="option for option in configureoptions.question_order track by option" data-ng-required="true">
+                                            <option value="">Please select</option>
+                                        </select>
+                                        <p class="text-danger" data-ng-show="assesmentformdata.questions_order_{{$index}}.$invalid && !assesmentformdata.questions_order_{{$index}}.$pristine">Segment Count is required.</p>
+                                    </div>
+                                </div>
+                                <div class="row segment-classsec">
+                                    <label class="control-label question_label" data-ng-if="segment.questions.length">Questions</label>
+                                    <div data-ng-repeat="question in segment.questions">
+                                        <div class="col-sm-6 form-group" data-ng-init="question.question_id = question.problemtemplate_id">
+                                            <uib-accordion close-others="oneAtATime">
+                                                <div uib-accordion-group class="panel-default" is-open="status.open">
+                                                    <uib-accordion-heading>
+                                                        {{question.preview_text}} <i class="pull-right glyphicon" data-ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i>
+                                                    </uib-accordion-heading>
+                                                    <div class="row">
+                                                        <div class="col-sm-12 col-md-12">
+                                                            <div class="row">
+                                                                <div class="col-lg-4">
+                                                                    <label class="control-label">Start Date And Time</label>
+                                                                    <div class="input-group date-picker-padd">
+                                                                        <input type="text" class="form-control" uib-datepicker-popup="yyyy/MM/dd"  data-ng-model="question.included_from" is-open="question.popstartopen"  />
+                                                                        <span class="input-group-btn">
+                                                      <button type="button" class="btn btn-default" data-ng-click="question.popstartopen = !question.popstartopen"><i class="glyphicon glyphicon-calendar"></i></button>
+                                                      </span>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-lg-8">
+                                                                    <div uib-timepicker data-ng-model="question.included_from_datetime" data-ng-change="changed()" hour-step="1" minute-step="1" >
+                                                                </div>
+                                                                    </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-12 col-md-12">
+                                                            <div class="row">
+                                                                <div class="col-lg-4">
+                                                                    <label class="control-label">End Date And Time</label>
+                                                                    <div class="input-group date-picker-padd" >
+                                                                        <input type="text" class="form-control" uib-datepicker-popup="yyyy/MM/dd"  data-ng-model="question.excluded_from" is-open="question.popendopen"  />
+                                                                        <span class="input-group-btn">
+                                                      <button type="button" class="btn btn-default" data-ng-click="question.popendopen = !question.popendopen"><i class="glyphicon glyphicon-calendar"></i></button>
+                                                      </span>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-lg-8">
+                                                                    <div uib-timepicker data-ng-model="question.excluded_from_datetime" data-ng-change="changed()" hour-step="1" minute-step="1" >
+                                                                </div>
+                                                                    </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-sm-6 form-group">
+                                                            <label class="control-label" for="question_source_{{question.problemtemplate_id}}_{{$index}}">Question Source:</label>
+                                                            <select name="question_source_{{question.problemtemplate_id}}_{{$index}}" id="question_source_{{question.problemtemplate_id}}_{{$index}}" class="form-control" data-ng-disabled="true" data-ng-init="question.question_source = 'PTE'"   data-ng-model="question.question_source"
+                                                                    data-ng-options="option for option in configureoptions.question_source track by option">
+                                                                <option value="">Please select</option>
+                                                            </select>
+                                                        </div>
+                                                        <div class="col-sm-6 form-group" data-ng-class="{ 'has-error': assesmentformdata.question_position_{{outerIndex}}_{{$index}}.$invalid && !assesmentformdata.question_position_{{outerIndex}}_{{$index}}.$pristine}">
+                                                            <label class="control-label" for="question_position_{{outerIndex}}_{{$index}}">Question Position: </label>
+                                                            <div class="row">
+                                                                <div class="col-md-8" data-ng-init="question.question_position = question.question_position || $index +1">
+                                                                    <input type="text" required class="form-control" placeholder="Please enter Question Position" name="question_position_{{outerIndex}}_{{$index}}" id="question_position_{{outerIndex}}_{{$index}}"  data-ng-model="question.question_position">
+                                                                    <p class="text-danger" data-ng-show="assesmentformdata.question_position_{{outerIndex}}_{{$index}}.$invalid && !assesmentformdata.question_position_{{outerIndex}}_{{$index}}.$pristine">Segment Count is required.</p>
+                                                                </div>
+                                                                <div class="col-md-4">
+                                                                    <button type="button" data-ng-click="setPosQuestion($index , question.question_position, outerIndex)" class="btn btn-primary">Set</button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </uib-accordion>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6 col-sm-6">
+                                        <button type="button" class="btn btn-primary pull-left" data-ng-click="modalButtonClick($index)">Add Questions</button>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6" data-ng-if="segment.segment_Name != 'Segment Number 1'">
+                                        <button type="button" class="btn btn-danger pull-right" data-ng-click="removeSegment($event, $index)">Remove Segments</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-md-6 col-sm-6">
+                                <button type="button" class="btn btn-primary" data-ng-click="addSegment($event)">Add Segment</button>
+                            </div>
+                            <div class="col-md-6 col-sm-6">
+                                <button type="submit" class="btn btn-primary btn-info">Create Assessment</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

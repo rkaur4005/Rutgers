@@ -1,0 +1,33 @@
+<div class="container-fluid">
+    <div id="egyan-login-panel">
+        <div class="login-container card">
+            <img id="profile-img" class="profile-img-card" src="img/app-logo.png">
+            <form class="form-signin" id="frm_login" method="post" data-ng-submit="login()" role="form">
+                <div class="form-group">
+                    <label class="control-label" for="username">Netid<small> (for Rutgers students / faculty / staff)</small><span class="red">*</span></label>
+                    <input type="text" id="username" name="username" class="form-control" placeholder="Netid" required autofocus autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" data-ng-model="username">
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="password">Password<span class="red">*</span></label>
+                    <input type="password" id="password" name="password" class="form-control" placeholder="Password" required data-ng-model="password">
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-primary btn-block" type="submit">Login</button>
+                </div>
+                <br />
+                <div class="text-center">
+                    <a data-ng-href="http://elearning.rutgers.edu/techsupport/node/2" target="_blank"><h4>Tech Support</h4></a>
+                </div>
+            </form><!-- /form -->
+        </div>
+    </div><!-- /card-container-fluid -->
+    <div class="row">
+        <div class="col-md-12 text-center">
+            <h4>We recommend you use Chrome Browser</h4>
+            <a href="https://www.google.com/chrome/" target="_blank">
+                <img src="img/chrome.png" width="48" height="48" alt="Chrome">
+            </a>
+        </div>
+    </div>
+</div><!-- /container-fluid -->
+

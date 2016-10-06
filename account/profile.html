@@ -1,0 +1,74 @@
+<div class="row">
+    <div class="col-md-12">
+        <h3>Profile</h3>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-6">
+        <form id="frm_profile" method="post" data-ng-submit="updateprofile()" role="form">
+            <div class="form-group">
+                <label class="control-label" for="netid">Netid <small>(only for rutgers users)</small></label>
+                <input type="text" id="netid" class="form-control" placeholder="Netid" autocorrect="off" autocapitalize="off" data-ng-model="profile.internalid" data-ng-disabled="true">
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="control-label" for="fname">First name <span class="red">*</span></label>
+                        <input type="text" id="fname" class="form-control" placeholder="First Name" required autocorrect="off" data-ng-model="profile.fname">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="control-label" for="lname">Last name <span class="red">*</span></label>
+                        <input type="text" id="lname" class="form-control" placeholder="Last Name" required autocorrect="off" data-ng-model="profile.lname">
+                    </div>
+                </div>
+            </div>
+            <br />
+            <div class="form-group">
+                <label class="control-label for Gender">Gender </label><br />
+                <label>
+                    <input type="radio" value="MALE" data-ng-model="profile.gender">Male
+                </label>
+                <label>
+                    <input type="radio" value="FEMALE" data-ng-model="profile.gender">Female
+                </label>
+                <label>
+                    <input type="radio" value="OTHER" data-ng-model="profile.gender">Other
+                </label>
+                <label>
+                    <input type="radio" value="UNKNOWN" data-ng-model="profile.gender">Unknown
+                </label>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="control-label" for="email">Email:</label>
+                        <input type="email" id="email" class="form-control" placeholder="email" data-ng-model="profile.email">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="control-label" for="phone">Phone Number:</label>
+                        <input type="text" class="form-control" id="phone" placeholder="Phonenumber" data-ng-model="profile.phone">
+                    </div>
+                </div>
+            </div>
+            <br />
+            <div class="form-group">
+                Current Picture: <img data-ng-src="{{profile.profilePicture}}" />
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="file">Change Picture</label>
+                <br />
+                <input type="file" id="file" file-model="picture" accept="image/jpg" />
+            </div>
+            <br />
+            <div class="form-group">
+                <button class="btn btn-md btn-primary" type="submit">Update</button>
+            </div>
+        </form>
+    </div>
+</div>

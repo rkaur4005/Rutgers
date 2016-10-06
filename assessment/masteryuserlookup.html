@@ -1,0 +1,41 @@
+<div class="col-md-12">
+    <h3>Mastery Assessment Lookup for user</h3>
+    <form id="frm_lookup" method="post" data-ng-submit="loadmasteryassessmentreport()" role="form">
+        <div class="form-group">
+            <label class="control-label" for="netid">
+                Netid
+                <span class="red">*</span>
+            </label>
+            <input type="text" id="netid" name="netid" class="form-control" placeholder="Netid" required autofocus autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" data-ng-model="netid">
+        </div>
+        <div class="form-group">
+            <button class="btn btn-primary" type="submit">Search</button>
+        </div>
+    </form>
+    <div class="alert alert-danger" role="alert" data-ng-show="error">
+        {{error}}
+    </div>
+    <div data-ng-show="mastery_view">
+        <h4>Masteryassessment History For {{mastery[0].fullname}} ({{netid}})</h4>
+        <table class="table table-striped table-bordered table-hover">
+            <thead>
+            <tr>
+                <th>Assessment ID</th>
+                <th>Maxscore</th>
+                <th>Score</th>
+                <th>View Details</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr data-ng-repeat="mastery in mastery_view">
+                <td>{{mastery.masteryassessment_id}}</td>
+                <td>{{mastery.max_score}}</td>
+                <td>{{mastery.current_score}}</td>
+                <td>
+                    <span class="label" data-ng-if="mastery.status=== 'IN_PROGRESS'">Continue</span>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
